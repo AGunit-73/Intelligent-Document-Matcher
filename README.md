@@ -60,16 +60,4 @@ Teams receive complex documents with inconsistent layouts and wording. Manually 
 
 ---
 
-## Architecture (conceptual)
 
-```mermaid
-flowchart LR
-  A[Next.js UI<br/>Firebase Auth] -->|HTTPS| B[API Service]
-  B --> C[Parser & Router<br/>layout/section aware]
-  C --> D[Extractor<br/>rules + local embeddings]
-  D --> E[Vector Index<br/>(local)]
-  D --> F[Confidence Scorer]
-  F -->|low confidence| G[LLM Disambiguation<br/>(fallback)]
-  F --> H[Normalizer & Matcher<br/>reference tables]
-  H --> I[Exporter<br/>structured output]
-  B --> J[Logs & Metrics]
